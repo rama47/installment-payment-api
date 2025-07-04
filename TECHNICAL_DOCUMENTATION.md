@@ -11,36 +11,6 @@ The Payments API is a full-stack solution for managing installment orders, walle
 
 ---
 
-## Architecture Diagram
-
-```mermaid
-graph TD
-  subgraph Frontend
-    FE[Next.js Dashboard]
-  end
-  subgraph Backend
-    API[FastAPI App]
-    Celery[Celery Worker]
-    DB[(PostgreSQL)]
-    Redis[(Redis)]
-  end
-  subgraph External
-    Stripe[Stripe API]
-    Webhook[Webhook Listener]
-  end
-
-  FE -- REST/JSON --> API
-  API -- SQLAlchemy --> DB
-  API -- Celery Tasks --> Celery
-  Celery -- SQLAlchemy --> DB
-  API -- Redis Broker --> Celery
-  Celery -- Redis Broker --> API
-  Celery -- Stripe API --> Stripe
-  Celery -- Webhook Events --> Webhook
-```
-
----
-
 ## Backend
 
 ### Main Technologies
@@ -238,7 +208,6 @@ docker-compose up --build
 
 - **API docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
 - **Frontend:** [http://localhost:3000](http://localhost:3000)
-- **Contact:** Project maintainer or open an issue in your repository
 
 ---
 
