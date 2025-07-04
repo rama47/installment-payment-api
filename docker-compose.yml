@@ -13,7 +13,7 @@ services:
 
   celery_worker:
     build: ./backend
-    command: celery -A app.celery_tasks.celery worker --loglevel=info
+    command: celery -A app.celery_tasks worker --loglevel=info
     env_file:
       - ./backend/.env
     depends_on:
@@ -31,8 +31,8 @@ services:
     image: postgres:15
     environment:
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: adminpassword
-      POSTGRES_DB: mydb
+      POSTGRES_PASSWORD: pay@123
+      POSTGRES_DB: payments_db
     ports:
       - "5432:5432"
     volumes:
